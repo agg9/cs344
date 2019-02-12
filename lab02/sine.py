@@ -3,7 +3,7 @@ This module implements local search on a simple abs function variant.
 The function is a linear function  with a single, discontinuous max value
 (see the abs function variant in graphs.py).
 
-@author: kvlinden
+@author: kvlinden.  Edited by Austin Gibson
 @version 6feb2013
 """
 from tools.aima.search import Problem, hill_climbing, simulated_annealing, \
