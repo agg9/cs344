@@ -1,0 +1,48 @@
+2.1
+
+Which of the local search algorithms solves the problem? How well does each algorithm do?
+    - Both alogrithms solve the problem well.  They both get 15.
+Which algorithm works more quickly?
+    - They both work quickly, but the hill-climbing is faster.  (used timeit to test)
+Does the starting value for x make any difference? Why or why not?
+    - No, regardless of the starting value for x, the algorithms are able to solve the problem.
+What affect does changing the delta step value make on each algorithm? Why?
+    - hill climber: If the delta step is higher than one, it may be unable to reach 15
+    - simulated annealing: If the delta step is higher than one, it can go over 15
+What is the purpose of the exp_schedule() method in the simulated annealing function call?
+    - to control the 'temperature' for the problem
+
+2.2
+How do each of the algorithms do on this problem space? Why?
+    -The simulated annealing does better than the hill-climbing, because it has the ability to accept lower values.
+Does the starting value make any difference here?
+    -Yes.  Because of the sin curve, higher starting values do better especially for the hill climber.
+Does modifying the step size (i.e., delta) affect the operation of the two algorithms? Why or why not?
+    -Yes, it again can cause the algorithms to over-step
+What are the maximum and minimum possible values here, and how do the two algorithms score with respect to them?
+    -Min is 0 and Max is 30.  Hill climbing is always in range, but the simulated annealing can go outside.  This is
+        because the hill climbing picks a point on the sin curve, and always stays on that line.  The simulated annealing
+        however can jump to a spot on the sin curve that is outside of the range
+
+2.3
+How does each algorithm do with these restarts? Why?
+    - Both do extremely well.  I used 50 restarts and they found a solution every time.  Because the random restart keeps
+    the best condition, it is able to find solutions over the course of 50 tries.  Even when I went down to 10 - 20
+    they found solutions quite often.
+
+What are the average values of the runs for each of the algorithms?
+    -Hill-Climb           X: 15.96      p-value: 3.98
+    -Simulated Annealing  X: 16.36      p-value: 9.92
+If one of the algorithms does better, explain why; if not, explain why not.
+    - Overall, the Simulated Annealing function did better.  Because of it's ability to make jumps, it had the ability
+    to do better, where the hill-climb depended on a good x value.
+
+2.4
+For which algorithm does beam search make the most sense?
+    -Hill Climbing
+How many solutions could you maintain with reasonable space and time constraints?
+    -Infinite
+How would you modify the code to implement beam search? How is it different from random restarts, if at all?
+    - You initially have randomly selected n states and then find all successors of those states.  Check if any successors
+        find solution (goal) and if not, select the n best from successors and repeat.  It is different because it does
+        not keep track of the best value, which random restart does.
