@@ -1,0 +1,37 @@
+Lab03 Austin Gibson
+3.1
+
+A.Which algorithms work (in a timely manner) and which don’t? Explain your results in terms of the capabilities (and implementations) of the algorithms and nature of the problems.
+    - The algorithms that worked were AC-3 and Backtracking, while the depth-first and min-conflicts did not.
+        The AC-3 was faster than the backtracking, which makes sense because the backtracking will try many possible paths
+        and 'backtrack' if it fails until it finds the solution, while the AC-3 preprocesses those conflicts.
+        The other algorithms do not work due to time or space constraints.
+
+B. What effect does configuring the settings for backtracking have on the results? Try the following:
+    - This allows the algorithms to solve more complicated problems.  The backtracking search was able to solve
+    the hardest sudoku puzzle.
+   (Which, if any, of these settings should work best for sudoku? What combination of settings actually works the best?)
+    - Forward-checking & mrv combination works best.
+3.2
+How large can n get for each of the algorithms? Why?
+    -Depth-first: None. Doesn't work for this kind of problem.
+    -AC-3:  None.  Also doesn't work for this kind of problem.
+    -Backtracking-search: At around 20 time/space constraints slowed it down.  Backtracking works well
+     but doesn't scale well with n.
+    -Min-Conflicts: At around 3000 time/space constraints caused problems.  This algorithms is very effective and allows
+        for a very large N because it doesn't backtrack after running into a fail.  It only makes a move where a queen
+        will have the minimum number of conflicts, thus avoiding local minimums and paths which wont work.
+What backtracking settings work the best? Why?
+    - Adding forward-checking & mrv seemed to be the best combination again.
+How many steps does Min-Conflicts require to do its work?
+    - It depends on the size, but doesn't scale linearly.  When N was at 3000 it still took < 50 on average.
+
+3.3
+Compare and contrast the specifications for CSP (i.e., csp.CSP) and traditional problems (i.e., search.Problem). Be sure to consider the nature of states, domains, actions, results and goal tests.
+    - Both the CSP and search.Problem have states, actions, results, and goal tests.  The CSP however has a set of variables
+    and domains for those variables, and also a set of constraints.  The traditional problems goal test will check the same
+    thing, whether a solution is found or not.  The CSP's goal test however tests for the constraints set.   Once
+    those constraints are met, the solution is found.
+Compare and contrast the nature of the heuristics deployed in traditional and constraint-based problem solving.
+    - In the traditional search, the heuristics can be set to help an overall goal while the CSP can use heuristics
+        that focus on completing constraints.
