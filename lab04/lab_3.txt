@@ -1,0 +1,36 @@
+Austin Gibson Lab04
+
+4.3
+
+                pos test          |  neg test
+  uses drugs|    .089x.99  .08811 | .089x.01 =.00089
+  doesnt use|    .911x.02  .01822 | .911x.98 .89278
+
+
+a. Drug test
+    i. P(User) = .089
+    ii. P(test | user) = (.08811) / .089 = .99
+    iii. P(-test | user) = .00089 / .089 = .01
+    iv. P(test | -user) = (.01822) / .911 = .02
+    v. P(user | test) = .08811 / (.08811 + .01822) = .08811 / .10633 = .82865
+
+b. Breast Cancer
+            cancer      |  no cancer
+  test pos| .1x.8  .008 | .99x.096=.09504
+  test neg| .1x.2  .002 | .99x.904.89496
+    P( cancer| pos test)
+        P(pos test | cancer)  x P(cancer)
+        ---------------------------------
+                P(pos test)
+
+            P(pos test | cancer) = .80   P(cancer) = .01  P(pos test) = (.008+.09504) =.10304
+
+            .80 x .01 / .10304
+
+            .008/ .10304 = .0776
+
+
+
+
+
+
