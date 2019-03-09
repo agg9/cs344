@@ -1,0 +1,7 @@
+Exercises 6.1 for CS344 lab06
+Austin Gibson
+March 8, 2019
+
+6.1
+a. Problem: Identify whether an email in Gmail is important
+

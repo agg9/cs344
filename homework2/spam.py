@@ -8,10 +8,11 @@
 
 
 spam_corpus = [["I", "am", "spam", "spam", "I", "am"], ["I", "do", "not", "like", "that", "spamiam"]]
-ham_corpus = [["do", "i", "like", "green", "eggs", "and", "ham"], ["i", "do"]]
+ham_corpus = [["do", "I", "like", "green", "eggs", "and", "ham"], ["I", "do"]]
 
-test_mail = ["I", "like", "green", "eggs", "and", "spam", "its", "good"]
-test_mail2 = ["do", "i", "like", "green", "eggs", "and", "ham", "i", "do"]
+test_mail1 = ["I", "am", "spam", "but", "if", "I", "like", "green", "eggs", "and", "ham", "am", "I", "still", "spam"]
+test_mail2 = ["I", "am", "spam", "but", "if", "I", "like", "green", "eggs", "and", "ham", "am", "I", "still", "spam",
+                "no", "unless", "theres", "extra", "spam", "I", "am"]
 
 #create hash tables
 good = {}
@@ -20,17 +21,17 @@ bad = {}
 #loop through corpuses and create hash tables with number of occurences
 for i in range(len(spam_corpus)):
     for j in range(len(spam_corpus[i])):
-        if spam_corpus[i][j] in good.keys():
-            good[spam_corpus[i][j]] = good[spam_corpus[i][j]] + 1
+        if spam_corpus[i][j] in bad.keys():
+            bad[spam_corpus[i][j]] = bad[spam_corpus[i][j]] + 1
         else:
-            good[spam_corpus[i][j]] = 1
+            bad[spam_corpus[i][j]] = 1
 
 for i in range(len(ham_corpus)):
     for j in range(len(ham_corpus[i])):
-        if ham_corpus[i][j] in bad.keys():
-            bad[ham_corpus[i][j]] = bad[ham_corpus[i][j]] + 1
+        if ham_corpus[i][j] in good.keys():
+            good[ham_corpus[i][j]] = good[ham_corpus[i][j]] + 1
         else:
-            bad[ham_corpus[i][j]] = 1
+            good[ham_corpus[i][j]] = 1
 
 #ngood and nbad are the number of nonspam & spam messages
 ngood = 0
@@ -57,36 +58,66 @@ def token_prob(word):
     else:
         return 0
 
-#create list of individual probabilities
-probList = []
-for word in test_mail:
-    probList.append(token_prob(word))
-
-#make list interesting.  take probability distance from a neutral .5
-interestingList = []
-for prob in probList:
-    interestingList.append(abs(prob - .5))
+#create third hash to map token to probability
+probhash = {}
+for word in good:
+    probhash[word] = token_prob(word)
+for word in bad:
+    probhash[word] = token_prob(word)
 
 
+#getting new mail
+def newMail(mailList):
+    probList = []
+    #get probability for tokens in new mail.  .4 if no probabilty
+    if len(mailList) <= 15:
+        for word in mailList:
+            prob = token_prob(word)
+            if prob != 0:
+                probList.append(prob)
+            else:
+                probList.append(.4)
+    # if mail tokens > 15.  Get 15 most interesting which is distance from .5
+    else:
+        unsortedList=[]
+        for word in mailList:
+            prob = token_prob(word)
+            if prob != 0:
+                unsortedList.append([prob, abs(prob - .5)])
+            else:
+                unsortedList.append([.4, abs(.4 - .5)])
+        unsortedList.sort(key=lambda x: x[1], reverse=True)
+        for i in range(15):
+            probList.append(unsortedList[i][0])
+    return probList
+
+#determine if newMail is spam
 def probability(listofProbs):
     prod = 1
     compliments = 1
-    for word in listofProbs:
-        prod = prod * word
-        compliments = compliments * (1 - word)
+    for prob in listofProbs:
+        prod *= prob
+        compliments *= 1 - prob
     return prod / (prod + compliments)
 
-
+#print out hash tables, ngood, nbad
 print("hash of good tokens: ")
 print(good)
 print("\n hash of bad tokens: ")
 print(bad)
+print("\n probability hash table: ")
+print(probhash)
 print("\n ngood: " + str(ngood))
-print("\n nbad: " + str(nbad))
-print("\ntest spam mail: ")
-print(test_mail)
-print("\nprobabilities of those words: ")
-print(probList)
-print("\nprobs distance from .5 : ")
-print(interestingList)
-print("\nfinal probability mail is spam: " + str(probability(interestingList)))
+print(" nbad: " + str(nbad))
+
+#test new mail
+newmail = newMail(test_mail1)
+print("\n new mail: ")
+print(test_mail1)
+print("final probability mail is spam: " + str(probability(newmail)))
+
+#test mail longer than len 15
+newmail = newMail(test_mail2)
+print("\n new mail: ")
+print(test_mail2)
+print("final probability mail is spam: " + str(probability(newmail)))
