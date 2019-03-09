@@ -27,7 +27,7 @@ cloudy = BayesNet([
      2 ^ 4 = 16
 
 2c. Independent values in bayesnet for domain
-    Referencing the BayesNet Implement earlier, there are 9 pairs.
+    Referencing the BayesNet implemented earlier, there are 9 values.
     
 """
 
