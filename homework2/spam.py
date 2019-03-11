@@ -34,14 +34,9 @@ for i in range(len(ham_corpus)):
             good[ham_corpus[i][j]] = 1
 
 #ngood and nbad are the number of nonspam & spam messages
-ngood = 0
-nbad = 0
+ngood = len(ham_corpus)
+nbad = len(spam_corpus)
 
-for key in good:
-    ngood += good[key]
-
-for key in bad:
-    nbad += bad[key]
 
 #calculate the probability email containing it is a spam
 def token_prob(word):
@@ -54,7 +49,7 @@ def token_prob(word):
     except:
         b = 0
     if g + b > 1:
-        return max(0.01, min(.99, min(1.0, b/nbad) / (min(1.0, g/ngood) + min(1.0, b/nbad))))
+        return max(0.01, min(0.99, min(1.0, b/nbad) / (min(1.0, g/ngood) + min(1.0, b/nbad))))
     else:
         return 0
 
