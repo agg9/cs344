@@ -19,7 +19,7 @@ def print_structures():
                 \n\tshape: {train_labels.shape} \
                 \n\tdata type: {train_labels.dtype} \
                 \n\tvalues: {train_labels}\n',
-        f'6.2.ii training \
+        f'6.2.ii testing \
                     \n\tdimensions: {test_labels.ndim} \
                     \n\tshape: {test_labels.shape} \
                     \n\tdata type: {test_labels.dtype} \
