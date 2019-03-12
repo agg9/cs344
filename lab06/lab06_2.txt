@@ -1,0 +1,16 @@
+Exercises 6.1 for CS344 lab06
+Austin Gibson
+March 11, 2019
+
+Entropy(V) = -(.5 * log2(.5) + .5 * log2(0.5))
+            = -(.5*(-1)+.5*(-1)
+            =-(-1) = 1
+
+hungry * Entropy(hungry, wait) + -hungry *Entropy(-hungry, wait)
+Reaminder(A) = (7/12) * -(5/7*log2(5/7)+2/7*log2(2/7)) + (5/12) * -(1/5*log(1/5) + 4/5*log(4/5))
+             = 0.8043
+
+Gain(A) = Entropy(V) - Remainder(A) = 1 - .8043 = .1957
+
+
+Since Type = 0.0bits and Patrons = .54 bits.  Hungry is better than Type but not better than Patrons

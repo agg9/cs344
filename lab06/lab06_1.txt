@@ -3,5 +3,34 @@ Austin Gibson
 March 8, 2019
 
 6.1
-a. Problem: Identify whether an email in Gmail is important
+1. We want the ML model to determine how successful a new video game will be.
 
+2. The ideal outcome is to be able to suggest new video games that people will find entertaining, and worth their money.
+   As video games can be expensive, being able to better predict how successful it might be,
+   will help people on their decision to buy a game.
+
+3. Our success metrics are the average review of the game, and the number of daily users.
+   Success means predicting 90% of the most successful video games as measure by the reviews,
+   and the number of daily users within a month of the game release.
+   Failure means the number of successful video games predicted is no better than current heuristics.
+
+4.  The output from our ML model will be whether the user enjoys the video game.
+    The output is defined as the amount of time the user spent playing.
+        If it is > a certain value, it is likely that they enjoy playing the game.
+
+5. The output from the ML model will be made a month after the release of a new video game.
+    The outcome will be used for further business logic such as a service that will give users
+        a list of upcoming video games they may like.
+
+6. If we didn't use ML, we would Use information from games previously release by the same company, or
+    reviews from critics who receive early access to the video games.
+
+7. Multi-class multi-label classification which predicts whether a video game will be {very popular, somewhat popular, not popular}
+
+8. input: studio, game-type, multiplayer(Y/N), studios last release, production cost, game cost, critic reviews, user ratings.
+   output: {very popular,etc}
+
+9. Information about the studio & cost can be easily obtained, from either the company itself or online.
+   There are sites that take critic reviews and user reviews to give ratings on the game.
+
+10. Cost, critic reviews, and user ratings are 3 inputs that could give a good initial result.
