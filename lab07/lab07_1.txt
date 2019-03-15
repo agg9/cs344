@@ -1,0 +1,14 @@
+Austin Gibson
+Lab07 Calvin College
+March 14, 2019
+
+7.1
+Submit your solutions to exercises 1–2.
+ 1. cities['city saint and greater than 50 miles'] = (cities['Area square miles'] > 50) & cities['City name'].apply(lambda val: val.startswith('San')
+ 2. cities.reindex([4,2,5,1]).  Index values on in original DataFrame's are allowed because indexes are often strings pulled
+        from the data.
+Why would one use Pandas rather than the standard data manipulation features provided by NumPy?
+    - Pandas has high level data manipulation tools, and is built on top of NumPy, so it has the capabilities
+        to do much more, but also can be a lot easier.
+Under what circumstances would it be useful to reorder/shuffle a Pandas DataFrame?
+    -It would be useful to shuffle to eliminate bias in the data.

@@ -1,0 +1,60 @@
+Austin Gibson
+Lab07 Calvin College
+March 14, 2019
+
+7.4
+Submit solutions to tasks 1–5.
+Task 1.)
+    The std for total_rooms is huge.  The max housing_age was 52, feel like it should be higher.  Median_income is 4.1, maybe
+        supposed to be 4.1 x 10k?
+Task 2.)
+    There is a variation in the distributions between teh training and validation data.
+Task 3.)
+    Np.random.permutation is commented out, so there was no randomization before taking the examples for the dataset,
+        which was causing bias in the data.
+Task 4.)
+  training_input_fn = lambda: my_input_fn(training_examples,training_targets["median_house_value"],batch_size=batch_size)
+  predict_training_input_fn = lambda: my_input_fn(training_examples,training_targets["median_house_value"],num_epochs=1,shuffle=False)
+  predict_validation_input_fn = lambda: my_input_fn(validation_examples, validation_targets["median_house_value"],num_epochs=1,shuffle=False)
+
+  training_predictions = linear_regressor.predict(input_fn=predict_training_input_fn)
+  training_predictions = np.array([item['predictions'][0] for item in training_predictions])
+
+  validation_predictions = linear_regressor.predict(input_fn=predict_validation_input_fn)
+  validation_predictions = np.array([item['predictions'][0] for item in validation_predictions])
+
+
+linear_regressor = train_model(
+
+    learning_rate=0.00002,
+    steps=1000,
+    batch_size=5,
+    training_examples=training_examples,
+    training_targets=training_targets,
+    validation_examples=validation_examples,
+    validation_targets=validation_targets)
+
+    RSME: 164.34
+
+Task 5.)
+california_housing_test_data = pd.read_csv("https://download.mlcc.google.com/mledu-datasets/california_housing_test.csv", sep=",")
+
+test_examples = preprocess_features(california_housing_test_data)
+test_targets = preprocess_targets(california_housing_test_data)
+
+predict_test_input_fn = lambda: my_input_fn(test_examples, test_targets["median_house_value"],num_epochs=1, shuffle=False)
+
+test_predictions = linear_regressor.predict(input_fn=predict_test_input_fn)
+test_predictions = np.array([item['predictions'][0] for item in test_predictions])
+
+root_mean_squared_error = math.sqrt(metrics.mean_squared_error(test_predictions, test_targets))
+print("Final RMSE (on test data): %0.2f" % root_mean_squared_error)
+
+161.41
+The performance was a little better than the validation performance, which means the the ML model is doing what it should.
+
+
+B. Give a one-paragraph summary of what you learned about using training, validation and testing datasets.
+    Training, validation and testing datasets can be very useful in finding problems with a models data.  Being able to see
+    the data, gives a better insight to what may be happening in the code, which helps debugging problems.  Also, using the
+    different datasets, allows the the ML model to improve itself, and therefore perform better.

@@ -1,0 +1,37 @@
+Austin Gibson
+Lab07 Calvin College
+March 14, 2019
+
+7.3
+Submit solutions to tasks 1–3.
+Task 1.) california_housing_dataframe["rooms_per_person"] = california_housing_dataframe["total_rooms"] / california_housing_dataframe["population"]
+            calibration_data = train_model(
+            learning_rate=0.05,
+            steps=500,
+            batch_size=5,
+            input_feature="rooms_per_person"
+        )
+        RSME: 131.65
+
+Task 2.)plt.figure(figsize=(15, 6))
+  plt.subplot(1, 2, 1)
+  plt.title("predictions vs target values")
+  plt.scatter(calibration_data["predictions"], calibration_data["targets"])
+
+Task 3.)california_housing_dataframe["rooms_per_person"] = (
+    california_housing_dataframe["rooms_per_person"]).apply(lambda x: min(x, 5))
+    calibration_data = train_model(
+            learning_rate=0.05,
+            steps=500,
+            batch_size=5,
+            input_feature="rooms_per_person"
+        )
+    plt.subplot(1, 2, 1)
+  plt.title("predictions vs target values -- clipped")
+  plt.scatter(calibration_data["predictions"], calibration_data["targets"])
+
+What is the purpose of introducing synthetic features?
+    -So that we can understand different possibilities by combining features that already exist
+What are outliers and what is typically done with them?
+    - Outliers are values that are way different that the majority in a dataset.  It could be bigger or smaller.
+    Depending how far away from the mean the value is, it is most likely dropped.

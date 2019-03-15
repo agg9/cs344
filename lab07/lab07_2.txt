@@ -1,0 +1,30 @@
+Austin Gibson
+Lab07 Calvin College
+March 14, 2019
+
+7.2
+Compare and contrast categorical vs numerical data
+ - Categorical data is data that is textual, while numerical data is data that is a number, and any value that would be
+    treated as a number.
+Submit solutions to tasks 1–2. Include your best hyper-parameter values and the resulting RMSE, but not the training output.
+    Task 1.)  train_model(
+                learning_rate=0.00003,
+                steps=1000,
+                batch_size=5
+                )
+
+    Final RSME: 175.66
+
+
+    Task 2.) adding population input with the same hyper-parameters as task 1 does not yeild better output.
+    train_model(
+    learning_rate=0.00003,
+    steps=1000,
+    batch_size=5,
+    input_feature="population"
+)
+
+    Final RSME: 178.20
+
+What are the hyper-parameters learned in these exercises and is there a “standard” tuning algorithm for them?
+    -The learning rate, number of training steps, and batch size.  There is no standard tuning algorithm.
