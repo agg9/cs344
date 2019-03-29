@@ -1,0 +1,18 @@
+lab08 cs344 Calvin College
+Austin Gibson
+March 28,2019
+
+8.3
+
+a.Compare and contrast Seaborn vs. MatPlotLib.
+    Both of these tools are libraries that can be used for data visualization.  Seaborn however is built on top of
+    MatPlotLib, and allows for different variations and plot types.
+b.How big is this dataset and does it seem of an appropriate size for this problem?
+    The dataset is 397 x 8.  Yes, it seems appropriate as the problem isn't too complex, but a prediction of fuel efficiency.
+c.Explain what the prescribed normalization of the data does.
+    Prescribed normalization makes training easier by using different scales and ranges.
+d.Is this an example of a linear regression model?
+    Yes.
+e.In their conclusion, they claim that smaller datasets “prefer” smaller networks. Do you agree? Explain your answer.
+    I agree.  As we discussed in class, a network that is too big can end up just 'memorizing' inputs, instead of
+        actually learning.  So I think in the case of a smaller dataset, a smaller network fits better.

@@ -1,0 +1,64 @@
+lab08 cs344 Calvin College
+Austin Gibson
+March 28,2019
+
+8.1
+a.What does the Pearson correlation coefficient measure? Identify one example value from the correlation table you compute and explain why it makes sense.
+    It measures the linear correlation between two variables.  One example is "median_income", which has a correlation of 0.7 to
+    "median_house_value".  This makes sense because the more income that people have, it is likely that they will spend more on
+    their homes.
+
+b.Submit your solutions to tasks 1–2. Include the features you selected for task 1 and the synthetic features you developed for
+task 2; include the final RMS errors but not the training output. Did you beat the Google-provided baselines?
+
+    Task 1.)
+    #
+    # Your code here: add your features of choice as a list of quoted strings.
+    #
+    minimal_features = ["median_income", "rooms_per_person","housing_median_age"
+    ]
+
+    assert minimal_features, "You must select at least one feature!"
+
+    minimal_training_examples = training_examples[minimal_features]
+    minimal_validation_examples = validation_examples[minimal_features]
+
+    #
+    # Don't forget to adjust these parameters.
+    #
+    train_model(
+        learning_rate=0.003,
+        steps=1000,
+        batch_size=5,
+        training_examples=minimal_training_examples,
+        training_targets=training_targets,
+        validation_examples=minimal_validation_examples,
+        validation_targets=validation_targets)
+
+    Final RSME:  127.23
+    Although the number was low, it did not beat the google base-line. google RSME: 113.11
+
+
+    Task 2.)
+    def select_and_transform_features(source_df):
+      selected_examples = pd.DataFrame()
+      selected_examples["median_income"] = source_df["median_income"]
+      selected_examples["dist_from_san_fran"] = abs(source_df["latitude"] - 38)
+      return selected_examples
+
+    selected_training_examples = select_and_transform_features(training_examples)
+    selected_validation_examples = select_and_transform_features(validation_examples)
+
+    _ = train_model(
+        learning_rate=0.01,
+        steps=500,
+        batch_size=5,
+        training_examples=selected_training_examples,
+        training_targets=training_targets,
+        validation_examples=selected_validation_examples,
+        validation_targets=validation_targets)
+
+        final RSME: 130.90
+
+        Yes, this beat googles base-line.  google RSME: 140.72
+
