@@ -1,0 +1,45 @@
+lab09 for CS344 at Calvin College
+Austin Gibson
+April 5, 2019
+
+9.3
+a.Exercise 1:
+What’s the size of the cats/dogs datasets?
+-dogs training set: 1000
+-cats training set: 1000
+-dogs validation set: 500
+-cats validation set: 500
+How does the first convnet compare with the one we did in class.
+- The convnet is very similar to the one we did in class.  It has 3 layers, and uses max-pooling.  The
+    initial input shape is much larger though with 150x150.
+
+Can you see any interesting patterns in the intermediate representations?
+-One interesting pattern is that for both cats and dogs, the network pays a lot of attention to the face, especially
+     the ears of the animal.
+
+b.Exercise 2:
+What is data augmentation?
+-Data augmentation is a way to "augment" training examples by doing random transformations.  This is important
+    so that the model doesn't see the exact same picture twice, which helps prevent overfitting and helps the model
+    generalize better.
+
+Report your best results and the hyperparameters you used to get them.
+results:
+    loss: .535
+    acc:  .734
+    val_loss: .4907
+    val_acc:  .767
+
+
+hyperparameters:
+history = model.fit_generator(
+      train_generator,
+      steps_per_epoch=150,
+      epochs=30,
+      validation_data=validation_generator,
+      validation_steps=80,
+      verbose=2)
+
+
+
+c. Skip Exercise 3.

@@ -1,0 +1,26 @@
+lab09 for CS344 at Calvin College
+Austin Gibson
+April 5, 2019
+
+9.1
+a.How does the linear regression approach to the problem fare?
+    It doesn't seem to do that well.  Bot the starting and final RSME are .45, which shows that it didn't really
+    improve over the training periods.
+
+b.Task 1: Compare and contrast L2 Loss vs LogLoss.
+    Both L2 Loss and LogLoss are both loss functions in machine learning.  L2 loss doesn't do a good job penalizing when
+    the output is interpreted as a probability.  LogLoss however does, because ti penalizes "confidence errors" more heavily.
+    So dealing with an output of 0-1, LogLoss will be much better suited.
+
+c.Task 2: Explain how the logistic regression fares compared to the linear regression.
+    While the starting value was higher at .61, the final was .53 after the training.  This shows that the logistic
+    regression fared better because the training helped to improve it.
+
+d.Task 3: Here, just report the best values you can achieve for AUC/accuracy and what hyperparameters you used to get them.
+    AUC:.80
+    accuracy: .78
+
+    hyperparameters:
+    learning_rate=0.000002,
+    steps=25000,
+    batch_size=750
