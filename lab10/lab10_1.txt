@@ -1,0 +1,24 @@
+Lab10 CS344 Calvin College
+Austin Gibson
+4/15/2019
+
+10.1
+Would you rather use TensorFlow or Keras to build your models?
+    I would rather use Keras.  Keras seems to be much more user-friendly and easier to understand, which makes it easier
+    for me to build models.  Also, I am still able to integrate TF code into Keras, so I am not really missing anything
+    by using Keras.
+
+Tasks 1 & 2: Report your best hyper-parameter settings and their resulting performance on the testing dataset.
+    hyper-parameters:
+    dnn_regressor = train_nn_regression_model(
+        learning_rate=0.001,
+        steps=5000,
+        batch_size=200,
+        hidden_units=[10, 10, 5],
+        training_examples=training_examples,
+        training_targets=training_targets,
+        validation_examples=validation_examples,
+        validation_targets=validation_targets)
+
+        Final RSME (training data): 97.56
+        Final RSME (validation data): 98.71
