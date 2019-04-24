@@ -1,0 +1,16 @@
+Lab10 CS344 at Calvin College
+Austin Gibson
+4/18/2019
+
+10.3
+
+Task 1: What does the confusion matrix show for this example?
+	- It shows which classes that were misclassified as others. This is because digits would get confused for eachother.  It seems as though 5 and 9 are often misclassified in this example.
+
+Task 2: How does the TensorFlow network architecture differ from the Keras example given in class? Report any improvements you can make over the baseline testset accuracy for this task.
+	The main difference is that TensorFlow uses a DNNClassifier object that accepts different parameters such as the hidden units, feature columns and optimzer, where we built those steps seperately with
+	Keras.  This also means that the TensorFlow architecture is not a CNN.
+
+Task 3: What differences can you see between the visualizations for 10 steps and 1000 steps?
+	-With 10 steps the visualizaitons are digital looking.  They don't really looking like anything just
+	different colored pixels.  With the 1000 steps however, the visualizations are much more refined, and often images are able to be made out.

@@ -1,0 +1,92 @@
+Lab10 CS344 at Calvin College
+Austin Gibson
+4/18/2019
+
+10.4
+
+Task 1: Is a linear model ever preferable to a deep NN model?
+	-Yes, a linear model might be preferable when the data is using linear dependencies.
+
+Task 2: Does the NN model do better than the linear model?
+	-Yes.  While the linear model performed better with the training data, the NN model performed 
+	better with the test data.
+
+Task 3: Do embeddings do much good for sentiment analysis tasks?
+	- Yes
+
+Tasks 4–5: Name two words that have similar embeddings and explain why that makes sense.
+	- Brilliant and amazing.  This makes sense because often the words are used in similar ways to describe something, and have similar definitions.  While they're meanings aren't exactly the same,
+	often people will use them interchangably.  
+
+Task 6: Report your best hyper-parameters and their resulting performance.
+
+# Create a feature column from "terms", using a full vocabulary file.
+informative_terms = None
+with io.open(terms_path, 'r', encoding='utf8') as f:
+  # Convert it to a set first to remove duplicates.
+  informative_terms = list(set(f.read().split()))
+  
+terms_feature_column = tf.feature_column.categorical_column_with_vocabulary_list(key="terms", 
+                                                                                 vocabulary_list=informative_terms)
+
+terms_embedding_column = tf.feature_column.embedding_column(terms_feature_column, dimension=3)
+feature_columns = [ terms_embedding_column ]
+
+my_optimizer = tf.train.AdagradOptimizer(learning_rate=0.25)
+my_optimizer = tf.contrib.estimator.clip_gradients_by_norm(my_optimizer, 5.0)
+
+classifier = tf.estimator.DNNClassifier(
+  feature_columns=feature_columns,
+  hidden_units=[10, 10],
+  optimizer=my_optimizer
+)
+
+classifier.train(
+  input_fn=lambda: _input_fn([train_path]),
+  steps=1000)
+
+evaluation_metrics = classifier.evaluate(
+  input_fn=lambda: _input_fn([train_path]),
+  steps=1000)
+print("Training set metrics:")
+for m in evaluation_metrics:
+  print(m, evaluation_metrics[m])
+print("---")
+
+evaluation_metrics = classifier.evaluate(
+  input_fn=lambda: _input_fn([test_path]),
+  steps=1000)
+
+print("Test set metrics:")
+for m in evaluation_metrics:
+  print(m, evaluation_metrics[m])
+print("---")
+
+Training set metrics:
+loss 6.7848287
+accuracy_baseline 0.5
+global_step 1000
+recall 0.92576
+auc 0.9571778
+prediction/mean 0.5278959
+precision 0.87171376
+label/mean 0.5
+average_loss 0.27139315
+auc_precision_recall 0.95565295
+accuracy 0.89476
+---
+Test set metrics:
+loss 8.149508
+accuracy_baseline 0.5
+global_step 1000
+recall 0.89872
+auc 0.9365087
+prediction/mean 0.5291209
+precision 0.8400509
+label/mean 0.5
+average_loss 0.32598037
+auc_precision_recall 0.932676
+accuracy 0.8638
+
+
+Optional Discussion: You can skip this section.
